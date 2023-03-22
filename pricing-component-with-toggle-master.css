@@ -1,0 +1,236 @@
+:root{
+	--VeryLightGrayishBlue: hsl(240, 78%, 98%);
+	--LightGrayishBlue: hsl(234, 14%, 74%);
+	--GrayishBlue: hsl(233, 13%, 49%);
+	--DarkGrayishBlue: hsl(232, 13%, 33%);
+	--White: hsl(192, 15%, 99%);
+	--font-weight-bold: 700;
+	--font-weight-boldest: 900;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html,body{
+	width: 100vw;
+	height: 100vh;
+	background: url(https://raw.githubusercontent.com/cmb347827/pricing-component-with-toggle-master-gitihub.io/main/bg-top.svg) right top no-repeat, url(https://raw.githubusercontent.com/cmb347827/pricing-component-with-toggle-master-gitihub.io/main/bg-bottom.svg) left bottom no-repeat;
+	background-color: var(--VeryLightGrayishBlue);
+	font-family: 'Montserrat', sans-serif;
+	font-weight: var(--font-weight-bold);
+}
+main{
+	display:grid;
+	min-height: 100vh;
+	width: 100%;
+	place-content: center;
+	
+}
+.container{
+	display:flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+h1{
+	text-align:center;
+}
+h1,h2{
+	color: var(--GrayishBlue);
+}
+
+.month{
+	display:none;
+}
+fieldset{
+	border:none;
+}
+fieldset label{
+	color: var(--LightGrayishBlue);
+}
+
+/* the toggle switch itself */
+.toggle {
+	height: 15px;
+	display:flex;
+	align-items:center;
+	
+}
+.toggle input[type="radio"] {
+	/*display:inline-flex to align the radio buttons horizontal, and hide them with opacity:0*/
+	display: inline-flex;
+	width: 40px;
+	height: 40px;
+	opacity: 0;
+}
+/*the toggle background without the slider part */
+.toggle__wrapper {
+	display: inline-flex;
+	width: 80px;
+	height:40px;
+	border-radius: 35px;
+	position: relative;
+}
+/* the toggle slider part */
+.toggle__slider {
+	display: inline-flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--White);
+}
+
+/*User toggles the toggle button , check if the annual option is selected..., if it is , toggle button should be left aligned with left:0*/
+#annual:checked ~ .toggle__slider {
+	left: 0;
+}
+/*User toggles the toggle button (check if the monthly option is selected, if it is, toggle button should be left aligned with left:40px*/
+#monthly:checked ~ .toggle__slider{
+	left:40px;
+}
+
+/*the next four lines check to see if the annual or monthly input have been checked, and to update the prices shown*/
+body:has(#annual:checked) .year{
+	display:block;
+}
+body:has(#annual:checked) .month{
+	display:none;
+}
+body:has(#monthly:checked) .year{
+	display:none;
+}
+body:has(#monthly:checked) .month{
+	display:block;
+}
+
+.margin-right{
+	margin-right: 15px;
+}
+.margin-left{
+	margin-left: 15px;
+}
+
+.bottom{
+	margin-top: 65px;
+}
+.box{
+	margin: 25px 0;
+	background-color: var(--White);
+	display:flex;
+	flex-flow: column wrap;
+	align-items:center;
+	text-align:center;
+	padding: 25px 85px;
+}
+.left{
+	border-radius: 15px 15px 0 0;
+}
+.right{
+	border-radius: 0 0 15px 15px;
+}
+/*add the blue gradient to the middle .box and to the top and bottom (or right and left) buttons.*/
+.middle, .left button,.right button, .toggle__wrapper{
+	background: linear-gradient(hsl(236, 72%, 79%),hsl(237, 63%, 64%));
+}
+.middle button{
+	background-color: var(--White);
+}
+/*remove the default ul bullet type and default padding/margin*/
+ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+li{
+	width: 200px;
+	border-bottom: 1px solid var(--LightGrayishBlue);
+	padding: 20px 0;
+	color: var(--GrayishBlue);
+}
+.middle h2,.middle li,.middle .month,.middle .year, .left button,.right button{
+	color: var(--White);
+}
+.middle button{
+	color: var(--GrayishBlue);
+}
+button{
+	width: 200px;
+	padding: 11px 0;
+	margin:15px 0;
+	border:none;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+button span{
+	font-weight: var(--font-weight-boldest);
+}
+/*change the buttons and toggle switch background colors on hover */
+.middle button:hover{
+	background: linear-gradient(hsl(236, 72%, 79%),hsl(237, 63%, 64%));
+	color: var(--White);
+	border: 1px solid var(--White);
+}
+.left button:hover, .right button:hover{
+	background: var(--White);
+	color: var(--GrayishBlue);
+	border: 1px solid var(--GrayishBlue);
+}
+.toggle__wrapper:hover{
+	background: var(--LightGrayishBlue);
+}
+
+/*All the tabable/focusable elements when keyboard tab focus to display */
+:is( button, .toggle input[type="radio"]):focus {
+	border:4px solid orange;
+	border-radius: 15px;
+	opacity:1;
+}
+
+
+li .month,li .year{
+	font-size: 48px;
+	color: var(--DarkGrayishBlue);
+	font-weight: var(--font-weight-boldest);
+}
+.attribution{
+	display:flex;
+	justify-content: center;
+	text-align:center;
+}
+
+
+@media screen and (min-width: 1440px){
+	.top-row span:nth-child(1){
+	    margin-right: 15px;
+    }
+    .top-row span:nth-child(3){
+	    margin-left: 15px;
+    }
+	.bottom{
+		display:flex;
+		flex-flow: row no-wrap;
+	}
+	.box{
+		margin: 0 0;
+	}
+	.left{
+	    box-shadow: -5px 5px 15px var(--LightGrayishBlue);
+		border-radius: 15px 0 0 15px;
+    }
+	.middle{
+		margin-top: -15px;
+		margin-bottom: -15px;
+		border-radius: 15px;
+	}
+	.right{
+		box-shadow: 5px 5px 15px var(--LightGrayishBlue);
+		border-radius: 0 15px 15px 0;
+	}
+}
